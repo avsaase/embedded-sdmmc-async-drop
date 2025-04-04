@@ -23,6 +23,8 @@ heapless = { version = "0.8.0", features = ["defmt-03"] }
 static_cell = { version = "2.1.0", features = ["nightly"] }
 portable-atomic = { version = "1.6.0", features = ["critical-section", "float"] }
 embedded-hal-async = "1.0.0"
+embedded-hal = "1.0.0"
+embassy-futures = "0.1.1"
 
 [profile.release]
 lto = true

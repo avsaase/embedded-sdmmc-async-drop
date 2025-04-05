@@ -43,7 +43,10 @@ async fn main(spawner: Spawner) {
 }
 
 #[embassy_executor::task]
-async fn sd_task(bus: &'static SpiBus, cs: Output<'static>) {
+async fn sd_task(bus: &'static SpiBus, mut cs: Output<'static>) {
+    cs.set_high();
+    bus.lock().await.write(&[0xFF; 10]).await.unwrap();
+
     bus.lock().await.set_frequency(25_000_000);
 
     let spi_device = SpiDevice::new(bus, cs);
